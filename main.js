@@ -6,16 +6,22 @@ const mobileMenu = document.querySelector('.mobile-menu');
 const cartMenuIcon = document.querySelector('.navbar-shopping-cart');
 const cartAsideMenu = document.querySelector('#shopping-cart-container');
 const cardsContainer = document.querySelector('.cards-container');
+const productDetail = document.querySelector('#product-detail');
+const productDetailClose = document.querySelector('.product-detail-close');
 
 // Agregamos eventos para que al dar click muestre o oculte un contenedor
-navEmail.addEventListener('click', () => toggleElement(desktopMenu, cartAsideMenu)); // () = > o arrow function es una funcion anonima utilizada comunmente en ES6 y tiene una sintaxis mas concisa
-mobileMenuIcon.addEventListener('click', () => toggleElement(mobileMenu, cartAsideMenu));
-cartMenuIcon.addEventListener('click', () => toggleElement(cartAsideMenu, mobileMenu));
+navEmail.addEventListener('click', () => toggleElement(desktopMenu, cartAsideMenu, productDetail, mobileMenu)); // () = > o arrow function es una funcion anonima utilizada comunmente en ES6 y tiene una sintaxis mas concisa
+mobileMenuIcon.addEventListener('click', () => toggleElement(mobileMenu, cartAsideMenu, productDetail, desktopMenu));
+cartMenuIcon.addEventListener('click', () => toggleElement(cartAsideMenu, mobileMenu, productDetail, desktopMenu));
+productDetailClose.addEventListener('click', () => toggleElement(productDetail, cartAsideMenu, desktopMenu, mobileMenu));
+
 
 // Esta funcion sirve para encender/apagar una clase y agregar otra, toma 2 parametros como referencia
-function toggleElement(element, isOpen) {
-    element.classList.toggle('inactive');
-    isOpen.classList.add('inactive');
+function toggleElement(elementOpen, elementClose1, elementClose2, elementClose3) {
+    elementOpen.classList.toggle('inactive');
+    elementClose1.classList.add('inactive');
+    elementClose2.classList.add('inactive');
+    elementClose3.classList.add('inactive');
 }
 
 // Declaramos nuestra variables productList donde guardaremos el objeto producto que puede venir de una BD o insertarla manualmente
@@ -43,6 +49,7 @@ function renderProducts(arrayProduct) {
     for (product of arrayProduct){
         const productCard = document.createElement('div');
         productCard.classList.add('product-card');
+        productCard.addEventListener('click', () => toggleElement(productDetail, cartAsideMenu, desktopMenu, mobileMenu));
     
         const productImg = document.createElement('img');
         productImg.setAttribute('src', product.image);
