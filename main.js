@@ -4,7 +4,7 @@ const desktopMenu = document.querySelector('.desktop-menu');
 const mobileMenuIcon = document.querySelector('.menu');
 const mobileMenu = document.querySelector('.mobile-menu');
 const cartMenuIcon = document.querySelector('.navbar-shopping-cart');
-const cartAsideMenu = document.querySelector('.product-detail');
+const cartAsideMenu = document.querySelector('#shopping-cart-container');
 const cardsContainer = document.querySelector('.cards-container');
 
 // Agregamos eventos para que al dar click muestre o oculte un contenedor
